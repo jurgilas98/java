@@ -49,20 +49,37 @@ public class BoletimEscolar {
     public int getNumeroFaltas() {
         return numeroFaltas;
     }
+
+    public void setNota1(double nota1) {
+        this.nota1 = nota1;
+    }
+
+    public void setNota2(double nota2) {
+        this.nota2 = nota2;
+    }
     
+    public boolean hasFaltas(){
+        return numeroFaltas > 0 ;
+        
+    }
     
     void registrarFalta(){
         numeroFaltas ++;
     }
-    public double getFrequencia(){
-       double frequencia;
-       frequencia = (numeroAulas - numeroFaltas)*100  /numeroAulas;
-       return frequencia;
+    public double getFrequencia(){       
+       return (double)(numeroAulas - numeroFaltas)*100  /numeroAulas;
+    }
+    public double getMedia(){
+        return (nota1+nota2)/2;
+    }
+    
+    public boolean isAprovado(){
+        return (getMedia()>= 5 && getFrequencia() >= 75);    
     }
 
     @Override
     public String toString() {
-        return "BoletimEscolar{" + "nomeAluno= " + nomeAluno + ", nota1= " + nota1 + ", nota2= " + nota2+ "Frequência= "+getFrequencia()+'}';
+        return "Boletim Escolar {" + "nomeAluno= " + nomeAluno + ", nota1= " + nota1 + ", nota2= " + nota2 + ", Media= "+getMedia()+ ", Frequência= " + getFrequencia() + ", Aprovado= " +isAprovado()+", Tem falta= " + hasFaltas()+'}';
     }
     
     
